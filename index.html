@@ -1,577 +1,332 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="renderer" content="webkit">
-	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<title>Pysasuke</title>
-	<!--
-<link rel="alternate" type="application/rss+xml" title="Miako&#039;s &raquo; Feed" href="https://www.pysasuke.me/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Miako&#039;s &raquo; 评论Feed" href="https://www.wuwenbin.me/comments/feed/" />
--->
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/www.wuwenbin.me\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.2"}};
-			!function(a,b,c){function d(a){var c,d=b.createElement("canvas"),e=d.getContext&&d.getContext("2d"),f=String.fromCharCode;return e&&e.fillText?(e.textBaseline="top",e.font="600 32px Arial","flag"===a?(e.fillText(f(55356,56806,55356,56826),0,0),d.toDataURL().length>3e3):"diversity"===a?(e.fillText(f(55356,57221),0,0),c=e.getImageData(16,16,1,1).data.toString(),e.fillText(f(55356,57221,55356,57343),0,0),c!==e.getImageData(16,16,1,1).data.toString()):("simple"===a?e.fillText(f(55357,56835),0,0):e.fillText(f(55356,57135),0,0),0!==e.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script>
-		<style type="text/css">
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
-</style>
-<link rel='stylesheet' id='crayon-theme-eclipse-css'  href='https://www.wuwenbin.me/wp-content/plugins/crayon-syntax-highlighter/themes/eclipse/eclipse.css?ver=_2.7.2_beta' type='text/css' media='all' />
-<link rel='stylesheet' id='crayon-font-consolas-css'  href='https://www.wuwenbin.me/wp-content/plugins/crayon-syntax-highlighter/fonts/consolas.css?ver=_2.7.2_beta' type='text/css' media='all' />
-<link rel='stylesheet' id='crayon-font-verdana-css'  href='https://www.wuwenbin.me/wp-content/plugins/crayon-syntax-highlighter/fonts/verdana.css?ver=_2.7.2_beta' type='text/css' media='all' />
-<link rel='stylesheet' id='hacker-style-css'  href='https://www.wuwenbin.me/wp-content/themes/hacker/style.css?ver=4.4.2' type='text/css' media='all' />
-<script type='text/javascript' src='https://www.wuwenbin.me/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
-<script type='text/javascript' src='https://www.wuwenbin.me/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-<link rel='https://api.w.org/' href='https://www.wuwenbin.me/wp-json/' />
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.wuwenbin.me/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.wuwenbin.me/wp-includes/wlwmanifest.xml" /> 
-<meta name="generator" content="WordPress 4.4.2" />
-<style type="text/css" id="custom-background-css">
-body.custom-background { background-color: #f2f2f2; }
-</style>
-<link rel="shortcut icon" href="https://www.wuwenbin.me/wp-content/uploads/2016/02/favicon.png" type="image/x-icon">    <style type="text/css" media="screen">
-            body,
-        h1, h2, h3, h4, h5, h6 {
-            font-family: "Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
-        }
-            </style>
-</head>
-<body class="home blog custom-background hfeed theme-customize">
-<div id="page" class="site">
-	<div id="primary" class="content-area">
-		<header id="masthead" class="site-header" role="banner">
-			<div class="site-branding">
-				<div class="site-logo" style="background-image: url(https://www.wuwenbin.me/wp-content/uploads/2016/02/ac345982b2b7d0a274b9c39ecdef76094b369a45.jpg)"></div><p class="site-description">Pysasuke</p>			</div>
-			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<div class="menu-%e7%bd%91%e7%ab%99%e8%8f%9c%e5%8d%95-container"><ul id="primary-menu" class="menu"><li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="https://wuwenbin.me">首页</a></li>
-<li id="menu-item-129" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-129"><a href="https://www.pysasuke.io/tagscloud/">标签云</a></li>
-<li id="menu-item-131" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a target="_blank" href="https://github.com/miyakowork">GitHub</a></li>
-<li id="menu-item-130" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130"><a href="https://www.wuwenbin.me/aboutme/">关于我</a></li>
-</ul></div>			</nav>
-			<!-- END #site-navigation -->
-		</header>
-		<!-- END .site-header -->
-		<div id="content" class="site-content"><main id="main" class="site-main posts-loop" role="main">
-	<article id="post-231" class="Article post-231 post type-post status-publish format-standard hentry category-javasej2ee tag-java tag-57 tag-56">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2016/02/18/40%e4%b8%aajava%e9%9b%86%e5%90%88%e9%97%ae%e9%a2%98%e5%8f%8a%e7%ad%94%e6%a1%88/" rel="bookmark">
-			<span>40个JAVA集合问题及答案</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/javasej2ee/" rel="category tag">JavaSE/J2EE</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2016/02/18/40%e4%b8%aajava%e9%9b%86%e5%90%88%e9%97%ae%e9%a2%98%e5%8f%8a%e7%ad%94%e6%a1%88/" rel="bookmark"><time class="entry-date published" datetime="2016-02-18T09:59:32+00:00">2016年2月18日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p><strong>1.Java集合框架是什么？说出一些集合框架的优点？</strong></p>
-<p>每种编程语言中都有集合，最初的Java版本包含几种集合类：Vector、Stack、HashTable和Array。随着集合的广泛使用，Java1.2提出了囊括所有集合接口、实现和算法的集合框架。在保证线程安全的情况下使用泛型和并发集合类，Java已经经历了很久。它还包括在Java并发包中，阻塞接口以及它们的实现。集合框架的部分优点如下： <a href="https://www.wuwenbin.me/2016/02/18/40%e4%b8%aajava%e9%9b%86%e5%90%88%e9%97%ae%e9%a2%98%e5%8f%8a%e7%ad%94%e6%a1%88/#more-231" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;40个JAVA集合问题及答案&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/java/" rel="tag">java</a><a href="https://www.wuwenbin.me/tag/%e6%a1%86%e6%9e%b6/" rel="tag">框架</a><a href="https://www.wuwenbin.me/tag/%e9%9b%86%e5%90%88/" rel="tag">集合</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="231"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2016/02/18/40%e4%b8%aajava%e9%9b%86%e5%90%88%e9%97%ae%e9%a2%98%e5%8f%8a%e7%ad%94%e6%a1%88/#comments">1 条评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-223" class="Article post-223 post type-post status-publish format-standard hentry category-httpserver category-linux-windows tag-apache tag-https tag-ssl">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2016/02/04/linux_apache_http_to_https/" rel="bookmark">
-			<span>Linux中apache设置http跳转https</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/httpserver/" rel="category tag">HttpServer</a>, <a href="https://www.wuwenbin.me/category/linux-windows/" rel="category tag">Linux/Windows</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2016/02/04/linux_apache_http_to_https/" rel="bookmark"><time class="entry-date published" datetime="2016-02-04T14:56:26+00:00">2016年2月4日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>首先需在http.conf中的<virtualhost *.*.*.*:80></virtualhost>中要设置好参数<br />
-然后在ssl.conf中设置相关SSLCertificate相关参数（具体的省略）<br />
-apache环境下，配置好https后，需要设置url重定向规则，使网站页面的http访问都自动转到https访问。&#8230; <a href="https://www.wuwenbin.me/2016/02/04/linux_apache_http_to_https/#more-223" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;Linux中apache设置http跳转https&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/apache/" rel="tag">apache</a><a href="https://www.wuwenbin.me/tag/https/" rel="tag">https</a><a href="https://www.wuwenbin.me/tag/ssl/" rel="tag">ssl</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="223"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2016/02/04/linux_apache_http_to_https/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-216" class="Article post-216 post type-post status-publish format-standard hentry category-httpserver category-linux-windows tag-catalina tag-linux tag-tomcat">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2016/01/02/linux_tomcat_catalina_out/" rel="bookmark">
-			<span>Linux下Tomcat日志Catalina.out大小过大解决办法</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/httpserver/" rel="category tag">HttpServer</a>, <a href="https://www.wuwenbin.me/category/linux-windows/" rel="category tag">Linux/Windows</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2016/01/02/linux_tomcat_catalina_out/" rel="bookmark"><time class="entry-date published" datetime="2016-01-02T11:27:43+00:00">2016年1月2日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p><span style="font-size: 14px;"><strong>前言</strong>：在Linux下如果java程序中有许多日志输出，则会导致tomcat的logs文件夹下catalina.out文件过大，时间长了可能会达到GB级别。这也太大了。为方面控制，我们可以将它分为天来输出。或者直接减少日志输出。&#8230;</span> <a href="https://www.wuwenbin.me/2016/01/02/linux_tomcat_catalina_out/#more-216" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;Linux下Tomcat日志Catalina.out大小过大解决办法&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/catalina/" rel="tag">catalina</a><a href="https://www.wuwenbin.me/tag/linux/" rel="tag">Linux</a><a href="https://www.wuwenbin.me/tag/tomcat/" rel="tag">tomcat</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="216"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2016/01/02/linux_tomcat_catalina_out/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-211" class="Article post-211 post type-post status-publish format-standard hentry category-database tag-mysql tag-50">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/29/211/" rel="bookmark">
-			<span>MYSQL开启与关闭远程访问</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/database%e7%9b%b8%e5%85%b3/" rel="category tag">DataBase相关</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/29/211/" rel="bookmark"><time class="entry-date published" datetime="2015-12-29T20:15:04+00:00">2015年12月29日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>MySQL 开启与关闭远程访问<br />
-(1)通过MySQL用户去限制访问<br />
-权限系统目的:<br />
-MySQL基于安全考虑root账户一般只能本地访问，但是在开发过程中可能需要打开root的远程访问权限，今天介绍的就是如何开启和关闭Mysql远程访问<br />
-MySQL权限系统的主要功能是证实连接到一台给定主机的用户，并且赋予该用户在数据库上的SELECT、INSERT、UPDATE和DELETE权限。 附加的功能包括有匿名的用户并对于MySQL特定的功能例如LOAD DATA INFILE进行授权及管理操作的能力。<br />
-权限系统原理:&#8230; <a href="https://www.wuwenbin.me/2015/12/29/211/#more-211" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;MYSQL开启与关闭远程访问&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/mysql/" rel="tag">mysql</a><a href="https://www.wuwenbin.me/tag/%e8%bf%9c%e7%a8%8b%e8%ae%bf%e9%97%ae/" rel="tag">远程访问</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="211"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/29/211/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-209" class="Article post-209 post type-post status-publish format-standard hentry category-webfront tag-js tag-48 tag-49">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/29/js_get_string_length/" rel="bookmark">
-			<span>js获取字符串的长度（区分中英文字符）</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/webfront/" rel="category tag">css/html/js</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/29/js_get_string_length/" rel="bookmark"><time class="entry-date published" datetime="2015-12-29T11:37:57+00:00">2015年12月29日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>js中获取字符串的长度，中文2个字符，英文1个字符。我常用方法5的第2个思路。&#8230; <a href="https://www.wuwenbin.me/2015/12/29/js_get_string_length/#more-209" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;js获取字符串的长度（区分中英文字符）&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/js/" rel="tag">js</a><a href="https://www.wuwenbin.me/tag/%e5%ad%97%e7%ac%a6%e4%b8%b2/" rel="tag">字符串</a><a href="https://www.wuwenbin.me/tag/%e9%95%bf%e5%ba%a6/" rel="tag">长度</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="209"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/29/js_get_string_length/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-207" class="Article post-207 post type-post status-publish format-standard hentry category-webfront tag-marquee">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/29/not_w3c_marquee_html/" rel="bookmark">
-			<span>非W3C内的HTML标签marquee的实现</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/webfront/" rel="category tag">css/html/js</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/29/not_w3c_marquee_html/" rel="bookmark"><time class="entry-date published" datetime="2015-12-29T09:49:01+00:00">2015年12月29日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>前言：<br />
-    marquee是一个可滚动的显示标签，可以实现例如滚动显示通知的样式。虽然w3c没有把此标签作为w3c的标准来发布，但是还有有些时候使用这个标签还是挺方便的。<br />
-    marquee可以实现自动滚动效果，无需js来控制。<br />
-    marquee不仅可以滚动、移动文字，也可用于图片、表格等。&#8230; <a href="https://www.wuwenbin.me/2015/12/29/not_w3c_marquee_html/#more-207" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;非W3C内的HTML标签marquee的实现&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/marquee/" rel="tag">marquee</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="207"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/29/not_w3c_marquee_html/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-202" class="Article post-202 post type-post status-publish format-standard hentry category-webfront tag-javascript tag-js tag-typeof">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/20/javascript%e7%9a%84typeof%e5%88%a4%e6%96%ad/" rel="bookmark">
-			<span>JavaScript的typeof判断</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/webfront/" rel="category tag">css/html/js</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/20/javascript%e7%9a%84typeof%e5%88%a4%e6%96%ad/" rel="bookmark"><time class="entry-date published" datetime="2015-12-20T00:16:03+00:00">2015年12月20日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pysasuke HomePage</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/templatemo-style.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <div class="site-bg"></div>
+        <div class="site-bg-overlay"></div>
 
-		<div id="crayon-56f1fcf2ca1b6328057060" class="crayon-syntax crayon-theme-eclipse crayon-font-verdana crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" max-width: 700px; margin-top: 12px; margin-bottom: 12px; font-size: 13px !important; line-height: 18px !important;">
-		
-			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title"></span>
-			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div><span class="crayon-language">JavaScript</span></div></div>
-			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
-			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 13px !important; line-height: 18px !important;">
-使用 typeof exam === "object" 判断 exam 是不是一个对象会有一些潜弊端(instanceof 如此)</textarea></div>
-			<div class="crayon-main" style=" max-width: 700px;">
-				<table class="crayon-table">
-					<tr class="crayon-row">
-				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-56f1fcf2ca1b6328057060-1">1</div></div>
-				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56f1fcf2ca1b6328057060-1">使用<span class="crayon-h"> </span><span class="crayon-r">typeof</span><span class="crayon-h"> </span><span class="crayon-v">exam</span><span class="crayon-h"> </span><span class="crayon-o">===</span><span class="crayon-h"> </span><span class="crayon-s">"object"</span><span class="crayon-h"> </span>判断<span class="crayon-h"> </span><span class="crayon-i">exam</span><span class="crayon-h"> </span>是不是一个对象会有一些潜弊端<span class="crayon-sy">(</span><span class="crayon-r">instanceof</span><span class="crayon-h"> </span>如此<span class="crayon-sy">)</span></div></div></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-<!-- [Format Time: 0.0007 seconds] -->
-<p>举个例子： &#8230; <a href="https://www.wuwenbin.me/2015/12/20/javascript%e7%9a%84typeof%e5%88%a4%e6%96%ad/#more-202" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;JavaScript的typeof判断&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/javascript/" rel="tag">javascript</a><a href="https://www.wuwenbin.me/tag/js/" rel="tag">js</a><a href="https://www.wuwenbin.me/tag/typeof/" rel="tag">typeof</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="202"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/20/javascript%e7%9a%84typeof%e5%88%a4%e6%96%ad/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-199" class="Article post-199 post type-post status-publish format-standard hentry category-webfront tag-css tag-js tag-44">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/09/css_js_forbid_select_word/" rel="bookmark">
-			<span>css和js禁止用户网页选择文字</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/webfront/" rel="category tag">css/html/js</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/09/css_js_forbid_select_word/" rel="bookmark"><time class="entry-date published" datetime="2015-12-09T23:04:04+00:00">2015年12月9日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>user-select有两个值：<br />
-none：用户不能选择文本<br />
-text：用户可以选择文本<br />
-需要注意的是：user-select并不是一个W3C的CSS标准属性，浏览器支持的不完整，需要对每种浏览器进行调整&#8230; <a href="https://www.wuwenbin.me/2015/12/09/css_js_forbid_select_word/#more-199" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;css和js禁止用户网页选择文字&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/css/" rel="tag">css</a><a href="https://www.wuwenbin.me/tag/js/" rel="tag">js</a><a href="https://www.wuwenbin.me/tag/%e7%a6%81%e6%ad%a2%e9%80%89%e5%8f%96/" rel="tag">禁止选取</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="199"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/09/css_js_forbid_select_word/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-193" class="Article post-193 post type-post status-publish format-standard hentry category-webfront tag-js tag-42">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/09/js_browser_width_height/" rel="bookmark">
-			<span>js 获取浏览器宽度和高度（多种情况，多浏览器）</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/webfront/" rel="category tag">css/html/js</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/09/js_browser_width_height/" rel="bookmark"><time class="entry-date published" datetime="2015-12-09T13:19:40+00:00">2015年12月9日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>IE中：<br />
-document.body.clientWidth ==&gt; BODY对象宽度<br />
-document.body.clientHeight ==&gt; BODY对象高度<br />
-document.documentElement.clientWidth ==&gt; 可见区域宽度<br />
-document.documentElement.clientHeight ==&gt; 可见区域高度<br />
-FireFox中：<br />
-document.body.clientWidth ==&gt; BODY对象宽度<br />
-document.body.clientHeight ==&gt; BODY对象高度<br />
-document.documentElement.clientWidth ==&gt; 可见区域宽度<br />
-document.documentElement.clientHeight ==&gt; 可见区域高度&#8230; <a href="https://www.wuwenbin.me/2015/12/09/js_browser_width_height/#more-193" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;js 获取浏览器宽度和高度（多种情况，多浏览器）&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/js/" rel="tag">js</a><a href="https://www.wuwenbin.me/tag/%e6%b5%8f%e8%a7%88%e5%99%a8%e9%ab%98%e5%ae%bd/" rel="tag">浏览器高宽</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="193"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/09/js_browser_width_height/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-177" class="Article post-177 post type-post status-publish format-standard hentry category-webfront tag-insert tag-mysql tag-replace-into">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/05/mysql_replace_insert/" rel="bookmark">
-			<span>MySQL替换字符串replace函数以及和insert into的区别</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/webfront/" rel="category tag">css/html/js</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/05/mysql_replace_insert/" rel="bookmark"><time class="entry-date published" datetime="2015-12-05T09:57:10+00:00">2015年12月5日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>要替换数据库中某张表中某个字段的某些字符串，需要用replace函数,eg：</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+        <!-- TOP HEADER -->
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <p class="phone-info">Call me: <a href="#">187 2097 8420</a></p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="social-icons">
+                            <ul>
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="#" class="fa fa-dribbble"></a></li>
+                                <li><a href="#" class="fa fa-rss"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .top-header -->
 
-		<div id="crayon-56f1fcf2caa6f056190591" class="crayon-syntax crayon-theme-eclipse crayon-font-verdana crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" max-width: 700px; margin-top: 12px; margin-bottom: 12px; font-size: 13px !important; line-height: 18px !important;">
-		
-			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title"></span>
-			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div><span class="crayon-language">MySQL</span></div></div>
-			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
-			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 13px !important; line-height: 18px !important;">
-update [table] set [column]=REPLACE([column],'need_to_replace_string','replace_string')</textarea></div>
-			<div class="crayon-main" style=" max-width: 700px;">
-				<table class="crayon-table">
-					<tr class="crayon-row">
-				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-56f1fcf2caa6f056190591-1">1</div></div>
-				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56f1fcf2caa6f056190591-1"><span class="crayon-st">update</span><span class="crayon-h"> </span>[<span class="crayon-st">table</span>]<span class="crayon-h"> </span><span class="crayon-st">set</span><span class="crayon-h"> </span>[<span class="crayon-r">column</span>]=<span class="crayon-st">REPLACE</span>([<span class="crayon-r">column</span>],<span class="crayon-s">'need_to_replace_string'</span>,<span class="crayon-s">'replace_string'</span>)</div></div></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-<!-- [Format Time: 0.0006 seconds] -->
-<p>此函数是<span style="color: #ff0000;">多字节安全的</span>&#8230; <a href="https://www.wuwenbin.me/2015/12/05/mysql_replace_insert/#more-177" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;MySQL替换字符串replace函数以及和insert into的区别&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/insert/" rel="tag">insert</a><a href="https://www.wuwenbin.me/tag/mysql/" rel="tag">mysql</a><a href="https://www.wuwenbin.me/tag/replace-into/" rel="tag">replace into</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="177"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/05/mysql_replace_insert/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-168" class="Article post-168 post type-post status-publish format-standard hentry category-webfront category-javasej2ee tag-dwz tag-37">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/05/dwz_change_pagenum/" rel="bookmark">
-			<span>DWZ切换分页时候出错解决办法</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/webfront/" rel="category tag">css/html/js</a>, <a href="https://www.wuwenbin.me/category/javasej2ee/" rel="category tag">JavaSE/J2EE</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/05/dwz_change_pagenum/" rel="bookmark"><time class="entry-date published" datetime="2015-12-05T00:05:55+00:00">2015年12月5日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>报错信息：</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-56f1fcf2cafa1781246113" class="crayon-syntax crayon-theme-eclipse crayon-font-verdana crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" max-width: 700px; margin-top: 12px; margin-bottom: 12px; font-size: 13px !important; line-height: 18px !important;">
-		
-			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title"></span>
-			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
-			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
-			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 13px !important; line-height: 18px !important;">
-TypeError: form[DWZ.pageInfo.numPerPage] is undefined</textarea></div>
-			<div class="crayon-main" style=" max-width: 700px;">
-				<table class="crayon-table">
-					<tr class="crayon-row">
-				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-56f1fcf2cafa1781246113-1">1</div></div>
-				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56f1fcf2cafa1781246113-1"><span class="crayon-v">TypeError</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">form</span><span class="crayon-sy">[</span><span class="crayon-v">DWZ</span><span class="crayon-sy">.</span><span class="crayon-v">pageInfo</span><span class="crayon-sy">.</span><span class="crayon-v">numPerPage</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-st">is</span><span class="crayon-h"> </span><span class="crayon-v">undefined</span></div></div></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-<!-- [Format Time: 0.0005 seconds] -->
-<p>等类似的错误。  <a href="https://www.wuwenbin.me/2015/12/05/dwz_change_pagenum/#more-168" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;DWZ切换分页时候出错解决办法&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/dwz/" rel="tag">dwz</a><a href="https://www.wuwenbin.me/tag/%e5%88%86%e9%a1%b5/" rel="tag">分页</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="168"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/05/dwz_change_pagenum/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-165" class="Article post-165 post type-post status-publish format-standard hentry category-database tag-database tag-31 tag-33">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/12/04/%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9e%e6%8e%a5%e6%b1%a0-dbcp%e5%92%8cc3p0/" rel="bookmark">
-			<span>数据库连接池 dbcp和c3p0</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/database%e7%9b%b8%e5%85%b3/" rel="category tag">DataBase相关</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/12/04/%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9e%e6%8e%a5%e6%b1%a0-dbcp%e5%92%8cc3p0/" rel="bookmark"><time class="entry-date published" datetime="2015-12-04T10:21:44+00:00">2015年12月4日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p><strong>首先要说的是：</strong></p>
-<ol>
-<li>hibernate开发组推荐使用的是c3p0。</li>
-<li>spring开发组推荐使用的是dbcp（dbcp连接池有weblogic连接池同样的问题，就是强行关闭连接或数据库重启后，无法reconnect ，告诉连接被重置,这个设置可以解决）。</li>
-<li>hibernate in action 推荐使用c3p0和proxool（详情可以Google）。</li>
-</ol>
-<p> <a href="https://www.wuwenbin.me/2015/12/04/%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9e%e6%8e%a5%e6%b1%a0-dbcp%e5%92%8cc3p0/#more-165" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;数据库连接池 dbcp和c3p0&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/database/" rel="tag">database</a><a href="https://www.wuwenbin.me/tag/%e6%95%b0%e6%8d%ae%e5%ba%93/" rel="tag">数据库</a><a href="https://www.wuwenbin.me/tag/%e8%bf%9e%e6%8e%a5%e6%b1%a0/" rel="tag">连接池</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="165"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/12/04/%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9e%e6%8e%a5%e6%b1%a0-dbcp%e5%92%8cc3p0/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-162" class="Article post-162 post type-post status-publish format-standard hentry category-httpserver tag-apache tag-tomcat">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/11/16/apache_tomcat/" rel="bookmark">
-			<span>Apache与Tomcat的区别与联系</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/httpserver/" rel="category tag">HttpServer</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/11/16/apache_tomcat/" rel="bookmark"><time class="entry-date published" datetime="2015-11-16T14:54:42+00:00">2015年11月16日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>Apache是web服务器（静态解析，如HTML），tomcat是java应用服务器（动态解析，如JSP、PHP）。Tomcat只是一个servlet(jsp也翻译成servlet)容器，可以认为是apache的扩展，但是可以独立于apache运行。</p>
-<p>我个人的理解应该这2者就像Eclipse和Myeclipse，tomcat是个相当于装了许多插件的Apache并且独立运行。<br />
- <a href="https://www.wuwenbin.me/2015/11/16/apache_tomcat/#more-162" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;Apache与Tomcat的区别与联系&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/apache/" rel="tag">apache</a><a href="https://www.wuwenbin.me/tag/tomcat/" rel="tag">tomcat</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="162"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/11/16/apache_tomcat/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-109" class="Article post-109 post type-post status-publish format-standard hentry category-webfront tag-jquery tag-lazyload tag-17">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/09/23/jquery-lazyload-js/" rel="bookmark">
-			<span>jQuery.lazyload.js插件详解</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/webfront/" rel="category tag">css/html/js</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/09/23/jquery-lazyload-js/" rel="bookmark"><time class="entry-date published" datetime="2015-09-23T09:49:58+00:00">2015年9月23日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+        <div class="visible-xs visible-sm responsive-menu">
+            <a href="#" class="toggle-menu">
+                <i class="fa fa-bars"></i> Show Menu
+            </a>
+            <div class="show-menu">
+                <ul class="main-menu">
+                    <li>
+                        <a class="show-1 active homebutton" href="#"><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li>
+                        <a class="show-2 aboutbutton" href="#"><i class="fa fa-user"></i>About Us</a>
+                    </li>
+                    <li>
+                        <a class="show-3 projectbutton" href="#"><i class="fa fa-camera"></i>Gallery</a>
+                    </li>
+                    <li>
+                        <a class="show-5 contactbutton" href="#"><i class="fa fa-envelope"></i>Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费模板</a></div>
+        <div class="container" id="page-content">
+            <div class="row">
 
-		<div id="crayon-56f1fcf2cb775461965965" class="crayon-syntax crayon-theme-eclipse crayon-font-consolas crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" max-width: 700px; margin-top: 12px; margin-bottom: 12px; font-size: 13px !important; line-height: 18px !important;">
-		
-			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title"></span>
-			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-mixed-highlight" title="含多种语言"></span><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div><span class="crayon-language">JavaScript</span></div></div>
-			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
-			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 13px !important; line-height: 18px !important;">
-&lt;script type="text/javascript" src="../js/jquery.lazyload.min.js"&gt;&lt;/script&gt; 
-&lt;script type="text/javascript"&gt;
- $(function() { 
- $("img").lazyload({ 
-     effect : "fadeIn"
-  });
- });
- &lt;/script&gt;</textarea></div>
-			<div class="crayon-main" style=" max-width: 700px;">
-				<table class="crayon-table">
-					<tr class="crayon-row">
-				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-56f1fcf2cb775461965965-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-56f1fcf2cb775461965965-2">2</div><div class="crayon-num" data-line="crayon-56f1fcf2cb775461965965-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-56f1fcf2cb775461965965-4">4</div><div class="crayon-num" data-line="crayon-56f1fcf2cb775461965965-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-56f1fcf2cb775461965965-6">6</div><div class="crayon-num" data-line="crayon-56f1fcf2cb775461965965-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-56f1fcf2cb775461965965-8">8</div></div>
-				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56f1fcf2cb775461965965-1"><span class="crayon-ta">&lt;script </span><span class="crayon-e ">type</span><span class="crayon-o">=</span><span class="crayon-s">"text/javascript"</span><span class="crayon-h"> </span><span class="crayon-e ">src</span><span class="crayon-o">=</span><span class="crayon-s">"../js/jquery.lazyload.min.js"</span><span class="crayon-o">&gt;</span><span class="crayon-ta">&lt;/script&gt;</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-56f1fcf2cb775461965965-2"><span class="crayon-ta">&lt;script </span><span class="crayon-e ">type</span><span class="crayon-o">=</span><span class="crayon-s">"text/javascript"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-56f1fcf2cb775461965965-3"><span class="crayon-h"> </span><span class="crayon-sy">$</span><span class="crayon-sy">(</span><span class="crayon-t">function</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-56f1fcf2cb775461965965-4"><span class="crayon-h"> </span><span class="crayon-sy">$</span><span class="crayon-sy">(</span><span class="crayon-s">"img"</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">lazyload</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-56f1fcf2cb775461965965-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">effect</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">"fadeIn"</span></div><div class="crayon-line crayon-striped-line" id="crayon-56f1fcf2cb775461965965-6"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-56f1fcf2cb775461965965-7"><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-56f1fcf2cb775461965965-8"><span class="crayon-h"> </span><span class="crayon-ta">&lt;/script&gt;</span></div></div></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-<!-- [Format Time: 0.0014 seconds] -->
-<p>其中img是延迟加载所有图片，也可以根据不同模板作相应改动，比如我这个主题，可以改成#post img，这样只延迟加载#post 容器内的图片，否则可能影响到侧边图片的加载，主要是留言者头像可能会最后加载；fadeIn是图片显示效果，这样基本就可以了!</p>
-<p> <a href="https://www.wuwenbin.me/2015/09/23/jquery-lazyload-js/#more-109" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;jQuery.lazyload.js插件详解&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/jquery/" rel="tag">jquery</a><a href="https://www.wuwenbin.me/tag/lazyload/" rel="tag">lazyload</a><a href="https://www.wuwenbin.me/tag/%e5%9b%be%e7%89%87%e5%8a%a0%e8%bd%bd/" rel="tag">图片加载</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="109"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/09/23/jquery-lazyload-js/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --><article id="post-92" class="Article post-92 post type-post status-publish format-standard hentry category-linux-windows tag-win8 tag-win8-1 tag-12">
-	<h3 class="Article__title">
-		<a href="https://www.wuwenbin.me/2015/08/19/windows_font_change/" rel="bookmark">
-			<span>WIN8/WIN8.1 菜单,消息框,窗口字体等修改注册表教程</span>
-		</a>
-			</h3>
-	<div class="Article__top-meta">
-		<span class="cat-links"><span class="screen-reader-text">目录  </span><a href="https://www.wuwenbin.me/category/linux-windows/" rel="category tag">Linux/Windows</a></span><span class="posted-on"><a href="https://www.wuwenbin.me/2015/08/19/windows_font_change/" rel="bookmark"><time class="entry-date published" datetime="2015-08-19T11:26:27+00:00">2015年8月19日</time></a></span>	</div>
-	
-		<div class="Article__content">
-	<p>由于WIN8.x 取消了 WIN7 的高级外观设置.导致 WIN8.x系统中有些字体不能更改.我这种有强迫症的人多难过.WIN7的高级外观设置如下 在 控制面板&#8211;&gt;外观和个性化&#8211;&gt;个性化&#8211;&gt;窗口颜色和外观&#8211;&gt;下面有个高级外观设置点击弹出对话框,如下图,然后各种地方的字体都可以改了.但WIN8.x竟然取消了这个设置.</p>
-<p> <a href="https://www.wuwenbin.me/2015/08/19/windows_font_change/#more-92" class="more-link">继续阅读<span class="screen-reader-text"> &#8220;WIN8/WIN8.1 菜单,消息框,窗口字体等修改注册表教程&#8221;</span></a></p>
-	</div>
-	<!-- END .Article__content -->
-		<footer class="Article__footer">
-			<div class="Article__meta pull-left">
-	<span class="post-tags"><i class="icon-tags"></i><a href="https://www.wuwenbin.me/tag/win8/" rel="tag">WIN8</a><a href="https://www.wuwenbin.me/tag/win8-1/" rel="tag">WIN8.1</a><a href="https://www.wuwenbin.me/tag/%e7%b3%bb%e7%bb%9f%e5%ad%97%e4%bd%93/" rel="tag">系统字体</a></span>	</div>
-	<!-- END .pull-left -->
-	<div class="Article__meta pull-right">
-	<span><a href="#" class="js-rating" data-post="92"><i class="icon-heart"></i><span class="js-count">0</span></a></span><span><i class="icon-comments"></i><span><a href="https://www.wuwenbin.me/2015/08/19/windows_font_change/#respond">暂无评论</a></span></span>	</div>
-	<!-- END .pull-right -->
-	</footer>
-	<!-- END .Article__footer -->
-</article>
-<!-- END .Article --></main>
-<!-- END #main -->
-<nav class="Pagination">
-	<a href="https://www.wuwenbin.me/page/2/"  class="Pagination__next">下一页&rarr;</a> 
-</nav>
-<!-- END .Pagination -->
 
-			</div>
-			<!-- END #content -->
-			<footer id="colophon" class="site-footer" role="contentinfo">
-				<div class="site-info">
-					<p class="meta">
-					Proudly powered by <a href="https://wordpress.org/" target="_blank">WordPress</a>					</p>
-					<p class="meta">
-					Theme by <a href="javascript:void(0);" target="_blank">moyu</a> Modify by <a href="https://wwuenbin.me/">WuWenBin</a>					</p>
-				</div>
-				<!-- END .site-info -->
-			</footer>
-			<!-- END #colophon -->
-		</div>
-		<!-- END #primary -->
-	</div>
-	<!-- END #page -->
-	<link rel='stylesheet' id='crayon-css'  href='https://www.wuwenbin.me/wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css?ver=_2.7.2_beta' type='text/css' media='all' />
-<script type='text/javascript'>
-/* <![CDATA[ */
-var hacker_object = {"ajaxurl":"https:\/\/www.wuwenbin.me\/wp-admin\/admin-ajax.php","rating_nonce":"73bce8e729","liked_text":"\u4f60\u5df2\u7ecf\u8d5e\u8fc7\u6b64\u6587\u7ae0\u4e86\uff01"};
-/* ]]> */
-</script>
-<script type='text/javascript' src='https://www.wuwenbin.me/wp-content/themes/hacker/js/main.js'></script>
-<script type='text/javascript' src='https://www.wuwenbin.me/wp-includes/js/wp-embed.min.js?ver=4.4.2'></script>
-<script type='text/javascript'>
-/* <![CDATA[ */
-var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/www.wuwenbin.me\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
-var CrayonSyntaxStrings = {"copy":"\u4f7f\u7528 %s \u590d\u5236\uff0c\u4f7f\u7528 %s \u7c98\u8d34\u3002","minimize":"\u70b9\u51fb\u5c55\u5f00\u4ee3\u7801"};
-/* ]]> */
-</script>
-<script type='text/javascript' src='https://www.wuwenbin.me/wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=_2.7.2_beta'></script>
-</body>
+                
+                <div class="col-md-9 col-sm-12 content-holder">
+                    <!-- CONTENT -->
+                    <div id="menu-container">
+                        
+                        <div class="logo-holder logo-top-margin">
+                            <a href="#" class="site-brand"><img src="images/logo.png" alt=""></a>
+                        </div>
+                        
+                        
+                        <div id="menu-1" class="homepage home-section text-center">
+                            <div class="welcome-text">
+                                <h2>Hello, Welcome to <strong>My HomePage</strong></h2>
+                                <p>I   <span class="orange">a</span><span class="green">m</span> Pysasuke. Thank you.</p>
+                                <form action="#" method="get" class="subscribe-form">
+                                    <div class="row">
+                                        <fieldset class="col-md-offset-2 col-md-6">
+                                            <input name="subscribe-email" type="email" class="email" id="subscribe-email" placeholder="Write your email here..">
+                                        </fieldset>
+                                        <fieldset class="col-md-4 button-holder">
+                                            <input name="submit" type="submit" class="button default" id="submit" value="Submit">
+                                        </fieldset>
+                                    </div>
+                                    <p class="subscribe-text">Please subscribe your email for latest updates!</p>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div id="menu-2" class="content about-section">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="box-content profile">
+                                        <h3 class="widget-title">Learn about me</h3>
+                                        <div class="profile-thumb">
+                                            <img src="images/1.jpg" alt="">
+                                        </div>
+                                        <div class="profile-content">
+                                            <h5 class="profile-name">Pysasuke</h5>
+                                            <span class="profile-role">Java Web Engineer</span>
+                                            <p>曾就职于 <a rel="nofollow" href="#">杭州万核网络科技有限公司</a> 担任JavaWeb工程师,<span class="blue">主要负责后台工作</span><br><br>
+											而后在<a rel="nofollow" href="#/font-awesome-icon-world-map/">美窝科技</a> 同样担任JavaWeb工程师, <span class="blue">主要负责ERP部分模块编写</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="box-content">
+                                        <h3 class="widget-title">Educational Background</h3>
+                                        <p>时间：2012年9月-2016年6月</p>
+                                        <p>院校：江西财经大学</p>
+                                        <p>专业：软件工程</p>
+                                        <div class="about-social">
+                                            <ul>
+                                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                                <li><a href="#" class="fa fa-dribbble"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 col-sm-5">
+                                    <div class="box-content">
+                                        <h3 class="widget-title">My Hobby</h3>
+                                        <div class="project-item">
+                                            <img src="images/2.jpg" alt="">
+                                            <div class="project-hover">
+                                                <h4>Naruto</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-7">
+                                    <div class="box-content">
+                                        <h3 class="widget-title">My Skills</h3>
+                                        <ul class="progess-bars">
+                                            <li>
+                                                <span>Spring SpringMVC Mybatis Mysql熟练开发</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span>JavaScript 熟悉</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span>HttpClient Jsoup 毕业设计使用</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span>Redis MongoDb 了解</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="menu-3" class="content gallery-section">
+                            <div class="box-content">
+                                <h3 class="widget-title">Part</h3>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="project-item">
+                                            <img src="images/1.jpg" alt="">
+                                            <div class="project-hover">
+                                                <h4>Graduation photo</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="project-item">
+                                            <img src="images/2.jpg" alt="">
+                                            <div class="project-hover">
+                                                <h4>Another Image Caption</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="project-item">
+                                            <img src="images/3.jpg" alt="">
+                                            <div class="project-hover">
+                                                <h4>Great Nature Capture</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="project-item">
+                                            <img src="images/4.jpg" alt="">
+                                            <div class="project-hover">
+                                                <h4>Another Image Caption</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="project-item">
+                                            <img src="images/5.jpg" alt="">
+                                            <div class="project-hover">
+                                                <h4>Great Nature Capture</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="project-item">
+                                            <img src="images/6.jpg" alt="">
+                                            <div class="project-hover">
+                                                <h4>Another Image Caption</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-pages">
+                                    <ul>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">...</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="menu-4" class="content contact-section">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="box-content">
+                                        <h3 class="widget-title">Send Me A Message</h3>
+                                        <!--<%&#45;&#45;<form class="contact-form" action="/blog/test.do" method="get">&#45;&#45;%>-->
+                                        <form class="contact-form" id="contact-form">
+                                            <fieldset>
+                                                <input type="text" name="name" class="name" id="name" placeholder="Name...">
+                                            </fieldset> 
+                                            <fieldset>
+                                                <input type="email" name="email" class="email" id="email" placeholder="Email...">
+                                            </fieldset> 
+                                            <fieldset>
+                                                <input type="text" name="subject" class="subject" id="subject" placeholder="Subject...">
+                                            </fieldset>
+                                            <fieldset>
+                                                <textarea name="message" id="message" cols="30" rows="4" placeholder="Message.."></textarea>
+                                            </fieldset>
+                                            <fieldset>
+                                                <!--<%&#45;&#45;<input type="submit" class="button" id="button" value="Send Message">&#45;&#45;%>-->
+                                                <input type="button" class="button" id="button" value="Send Message">
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="box-content">
+                                        <h3 class="widget-title">Stay In Touch</h3>
+                                        <p>Sed ullamcorper, risus a tincidunt efficitur, massa mauris ultricies leo, eu interdum eros erat non augue. <br><br>
+										Suspendisse ornare sollicitudin lectus non egestas. Nam fermentum imperdiet ligula congue venenatis. </p>
+                                        <div class="about-social">
+                                            <ul>
+                                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                                <li><a href="#" class="fa fa-dribbble"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 hidden-sm">
+                    
+                    <nav id="nav" class="main-navigation hidden-xs hidden-sm">
+                        <ul class="main-menu">
+                            <li>
+                                <a class="show-1 active homebutton" href="#"><i class="fa fa-home"></i>Home</a>
+                            </li>
+                            <li>
+                                <a class="show-2 aboutbutton" href="#"><i class="fa fa-user"></i>About Me</a>
+                            </li>
+                            <li>
+                                <a class="show-3 projectbutton" href="#"><i class="fa fa-camera"></i>Photos</a>
+                            </li>
+                            <li>
+                                <a class="show-5 contactbutton" href="#"><i class="fa fa-envelope"></i>Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- SITE-FOOTER -->
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>Copyright &copy; 2016 <a href="http://www.baidu.com/" target="_blank" title="Pysasuke主页">Pysasuke主页</a> (推荐使用IE8+,谷歌浏览器可以获得更快,更安全的页面响应速度)技术支持: <a href="http://www.baidu.com/" title="Pysasuke的主页" target="_blank">Pysasuke的主页</a></p>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .site-footer -->
+
+        <script src="js/vendor/jquery-1.10.2.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+		<!-- templatemo 439 rectangle -->
+    </body>
 </html>
